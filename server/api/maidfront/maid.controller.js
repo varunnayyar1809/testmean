@@ -24,6 +24,17 @@ exports.test = function(req,res){
    return res.json(200,{'name':'varun'});
 };
 
+exports.search_maid = function(req,res){
+    
+    Maid.find({
+    'firstname': req.body.firstname,  
+  }).  
+  exec(function (err, data) {
+    return res.json(200,data);  
+  });
+    
+}
+
 // Get a single thing
 exports.show = function(req, res) {
   Maid.findById(req.params.id, function (err, thing) {

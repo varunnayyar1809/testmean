@@ -1,2 +1,20 @@
 <div>TODO write content</div>
-
+<table style="margin-left:500px;">
+    <tr><td colspan="2">Search Form </td></tr>
+    <tr><td>Name </td><td><input type="text" ng-model="maid.firstname" /></td></tr>
+    <tr><td>Age </td><td><input type="text" ng-model="maid.age" /></td></tr>
+    
+    <tr><td>Experience </td><td><input type="text" ng-model="maid.experience" /></td></tr>
+    <tr><td>Location </td><td><input type="text" ng-model="maid.location" /></td></tr>
+    <tr><td>Price Per Person </td><td><input type="text" ng-model="maid.price_per_person" /></td></tr>
+    <tr><td>Meal Type </td><td><input type="text" ng-model="maid.meal_type" /></td></tr>
+    <tr><td>Cleaning </td><td><input type="text" ng-model="maid.cleaning" /></td></tr>
+    <tr><td>Language </td><td><input type="text" ng-model="maid.language" /></td></tr>
+    <tr><td>Home Town </td><td><input type="text" ng-model="maid.home_town" /></td></tr>
+    <tr><td>Name </td><td><input type="text" ng-model="maid.address1" /></td></tr>
+    <tr><td>Name </td><td><input type="text" ng-model="maid.address2" /></td></tr>
+    <tr><td colspan="2"><button type="button" ng-click="search_maid();">SEARCH</button></td></tr>
+</table>
+<div ng-repeat="x in maids" style="margin-left:500px;">
+    {{x.firstname}} | {{x.lastname}} | {{x.age}} | {{x.gender}} 
+</div>

@@ -6,7 +6,7 @@ var controller = require('./maid.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.post('/', controller.create);
+router.post('/', controller.search_maid);
 router.get('/:id', controller.show);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
