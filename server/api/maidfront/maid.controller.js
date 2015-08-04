@@ -10,7 +10,7 @@
 'use strict';
 
 var _ = require('lodash');
-var Maid = require('./maid.model');
+var Maid = require('../maid/maid.model');
 
 // Get list of things
 exports.index = function(req, res) {
@@ -21,10 +21,7 @@ exports.index = function(req, res) {
 };
 
 exports.test = function(req,res){
-    Maid.find(function (err, things) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, things);
-  });
+   return res.json(200,{'name':'varun'});
 };
 
 // Get a single thing
