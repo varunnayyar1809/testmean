@@ -5,12 +5,9 @@ angular.module('woobeeApp')
     return $resource('/api/maid/:id', {
       id: '@_id'
     },
-    {
-		  createUser: {
-			method: 'PUT',
-			params: {
-			  controller:'password'
-			}
+		{
+		  updateUser: {
+			method: 'PUT'
 		  }
 	  });
   });

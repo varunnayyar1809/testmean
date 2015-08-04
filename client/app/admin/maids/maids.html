@@ -43,7 +43,7 @@
                             <td colspan='6' >No record found</td>
                         </tr>
                     </tbody>
-                    <tbody ng-show='toogleShow'>
+                    <tbody ng-show='true'>
                         <tr ng-repeat='maids in maidsList'>
 							<td data-ng-bind="maids.firstname +' '+ maids.lastname"></td>
 							<td data-ng-bind="maids.age"></td>
@@ -54,7 +54,7 @@
 								<a class="btn btn-info" href="javascript:void(0)" data-ng-click="editMaid(maids._id)" popover="{{locale.edit}}" popover-trigger="mouseenter">
 										<i class="halflings-icon white edit"></i>  
 									</a>
-								<a class="btn btn-danger" href="javascript:void(0)" data-ng-click="deleteMaid(maids._id)" popover="{{locale.delete}}" popover-trigger="mouseenter">
+								<a class="btn btn-danger" href="javascript:void(0)" data-ng-click="deleteMaid(maids)" popover="{{locale.delete}}" popover-trigger="mouseenter">
 									<i class="halflings-icon white trash"></i> 
 								</a>
 							

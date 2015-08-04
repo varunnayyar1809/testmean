@@ -27,6 +27,7 @@ var MaidSchema = new Schema({
   active: String,
   state: String,
   city: String,
+  description: String,
 });
 
 module.exports = mongoose.model('Maid', MaidSchema);
