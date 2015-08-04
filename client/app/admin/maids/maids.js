@@ -15,11 +15,26 @@ angular.module('woobeeApp')
                         }
                     })
                     .state('maids.manageMaids', {
-                        url: '/manage',
+                        url: '/manage/:id',
                         authenticate: true,
                         title: 'WootBee | Manage Maids',
                         templateUrl: 'app/admin/maids/manageMaids.html',
-                        controller: 'ManageMaidsCtrl'
+                        controller: 'ManageMaidsCtrl',
+                        resolve: {
+							getMaidData: function($stateParams, MaidSer, $state){
+								var id = $stateParams.id;
+								if(id) {
+									return	MaidSer.get({id:id},
+										function(res){
+											return res;
+										},
+										function(err) {
+											$state.go('maids');
+										}
+									);
+								}
+							}
+						}
                     })
                     .state('tst', {
                         url: '/search_maids',
