@@ -8,6 +8,13 @@
 module.exports = {
   DOMAIN: 'http://localhost:9000',
   SESSION_SECRET: "woobee-secret",
+  
+  FACEBOOK_ID: '1444701762448090',
+  FACEBOOK_SECRET: '489e958e732b1508b713b6350bfc5956',
+
+  GOOGLE_ID: '333169757313-83aqelj0rlev7ltdf3ug06heqt7rd53n.apps.googleusercontent.com',
+  GOOGLE_SECRET: '3mRzHSbL5qhtWepkD5abN3eG',
+  
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''
 };

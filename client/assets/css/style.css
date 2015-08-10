@@ -2938,6 +2938,16 @@ ul.messagesList li span.date {
 	padding: 5px 40px 5px 10px;
 }
 
+/* custom css added by varun nayyar*/
+
+.control-label span{ color:red;}
+.control-group-error input[type="text"]{ border:1px solid #b94a48 !important;}
+.control-password-error input[type="password"]{ border:1px solid #b94a48 !important;}
+.control-group-error select{ border:1px solid #b94a48 !important;}
+.control-group-error textarea{ border:1px solid #b94a48 !important;}
+.control-group input[type="text"]{ border:1px solid #eee;}
+.control-group select{ border:1px solid #eee;}
+
 /* Retina Display Hack
 =================================================================== */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {

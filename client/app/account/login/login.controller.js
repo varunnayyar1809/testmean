@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('woobeeApp')
-  .controller('LoginCtrl', function ($scope, Auth, $state) {
+  .controller('LoginCtrl', function ($scope, Auth, $state, $window) {
     $scope.user = {};
     $scope.errors = {};
     $scope.login = function(form) {
@@ -21,5 +21,9 @@ angular.module('woobeeApp')
         });
       }
     };
-
+	
+	$scope.loginOauth = function(provider) {
+      $window.location.href = '/auth/' + provider;
+    };
+	
   });

@@ -26,4 +26,8 @@ angular.module('woobeeApp')
 			);
 		};
 		
+		// Search maids from database
+		$scope.maidSearch = function () {
+			console.log('search');
+		}
 	});
