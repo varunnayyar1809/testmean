@@ -35,16 +35,6 @@ angular.module('woobeeApp')
 				}
 			}
 		})
-		.state('tst', {
-			url: '/search_maids',
-			authenticate: true,
-			title: 'WootBee | Maids',                       
-			views: {
-				"header": {templateUrl: 'components/navbar/header.html'},
-				"body": {templateUrl: 'app/admin/maids/searchMaids.html',
-					controller: 'MaidsCtrl'}
-			}
-		})
 		.state('dashboard', {
 			url: '/dashboard',
 			authenticate: true,
