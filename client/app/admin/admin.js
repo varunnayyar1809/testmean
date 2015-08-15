@@ -5,6 +5,7 @@ angular.module('woobeeApp')
     $stateProvider
       .state('admin', {
         url: '/admin',
+        role: 'admin',
         templateUrl: 'app/admin/admin.html',
         controller: 'AdminCtrl'
       });

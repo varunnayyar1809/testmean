@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('woobeeApp')
-  .controller('LoginCtrl', function ($scope, Auth, $state, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $state, $window, $rootScope) {
     $scope.user = {};
     $scope.errors = {};
     $scope.login = function(form) {

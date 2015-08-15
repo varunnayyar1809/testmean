@@ -6,6 +6,7 @@ angular.module('woobeeApp')
 		.state('maids', {
 			url: '/maids',
 			authenticate: true,
+			role: 'admin',
 			title: 'WootBee | Maids',
 			views: {
 				"header": {templateUrl: 'components/navbar/header.html'},
@@ -17,6 +18,7 @@ angular.module('woobeeApp')
 			url: '/manage/:id',
 			authenticate: true,
 			title: 'WootBee | Manage Maids',
+			role: 'admin',
 			templateUrl: 'app/admin/maids/manageMaids.html',
 			controller: 'ManageMaidsCtrl',
 			resolve: {
@@ -39,6 +41,7 @@ angular.module('woobeeApp')
 			url: '/dashboard',
 			authenticate: true,
 			title: 'WootBee | Dashboard',
+			role: 'admin',
 			views: {
 				"header": {templateUrl: 'components/navbar/header.html'},
 				"body": {templateUrl: 'app/admin/dashboard/dashboard.html',

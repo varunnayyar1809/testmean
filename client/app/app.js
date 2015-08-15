@@ -9,12 +9,11 @@ angular.module('woobeeApp', [
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
-      .otherwise('/login');
+      .otherwise('/home');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
   })
-
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
       // Add authorization token to headers
@@ -57,5 +56,33 @@ angular.module('woobeeApp', [
           $location.path('/dashboard');
         }
       });
+      // check role of user
+      //~ if(toState.role) {
+			//~ var role = $cookies.role;
+			//~ if(toState.role != role) {
+				//~ if(role == 'admin'){
+					//~ $state.transitionTo('login');
+				//~ } else if(role == 'user') {
+					//~ $state.transitionTo('home');
+				//~ } else {
+					//~ $state.transitionTo('home');
+				//~ }
+				//~ event.preventDefault(); 
+			//~ }
+		//~ }
+		//~ // Control if user is login from another tab with different role
+		//~ if(toState.role && fromState.role) {
+			//~ if(toState.role != fromState.role) {
+				//~ location.reload();
+			//~ }
+		//~ }
+    });
+    
+    // change class of body after login
+	$rootScope.$watch(function() { 
+      return $location.path(); 
+    },
+    function(path) {
+		path != '/home' ? $rootScope.adminPanel = true :  $rootScope.adminPanel = false ;
     });
   });

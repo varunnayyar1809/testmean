@@ -6,6 +6,7 @@ angular.module('woobeeApp')
       .state('login', {
         url: '/login',
         authenticate: false,
+        role: 'admin',
         title:'WootBee | Login',
         views: {
 				"header": { template: '' },
@@ -21,7 +22,8 @@ angular.module('woobeeApp')
       .state('settings', {
         url: '/settings',
         authenticate: true,
-         title:'WootBee | Change Password',
+        role: 'admin',
+        title:'WootBee | Change Password',
         views: {
 				"header": { templateUrl: 'components/navbar/header.html'},
 				"body":   { templateUrl: 'app/account/settings/settings.html',
