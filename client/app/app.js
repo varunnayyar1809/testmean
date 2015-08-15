@@ -5,7 +5,8 @@ angular.module('woobeeApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngFileUpload'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider
@@ -40,7 +41,7 @@ angular.module('woobeeApp', [
     };
   })
 
-  .run(function ($rootScope, $location, Auth,$state) {
+  .run(function ($rootScope, $location, Auth,$state, $cookieStore) {
 	 // Change title of app
 	 $rootScope.$state = $state;
     // Redirect to login if route requires auth and you're not logged in
@@ -52,24 +53,34 @@ angular.module('woobeeApp', [
       });
       // Redirect to dashboard if you're logged in
       Auth.isLoggedInAsync(function(loggedIn) {
-        if (!toState.authenticate && loggedIn) {
-          $location.path('/dashboard');
-        }
+        //~ if (!toState.authenticate && loggedIn) {
+			//~ var role = $cookieStore.get('role');
+			//~ if(role == 'user'){
+				//~ $state.transitionTo('home');
+			//~ } else if(role == 'admin') {
+				//~ $state.transitionTo('dashboard');
+			//~ } else {
+				//~ $state.transitionTo('home');
+			//~ }
+			//~ event.preventDefault(); 
+        //~ }
       });
+      
       // check role of user
       //~ if(toState.role) {
-			//~ var role = $cookies.role;
-			//~ if(toState.role != role) {
-				//~ if(role == 'admin'){
-					//~ $state.transitionTo('login');
-				//~ } else if(role == 'user') {
-					//~ $state.transitionTo('home');
-				//~ } else {
-					//~ $state.transitionTo('home');
-				//~ }
+		//~ var role = $cookieStore.get('role');
+		//~ if(toState.role != role) {
+			//~ if(role == 'user'){
+				//~ $state.go('home');
+			//~ } else if(role == 'admin') {
+				//~ $state.go('login');
+			//~ } else {
+				//~ $state.go('home');
+			//~ }
 				//~ event.preventDefault(); 
 			//~ }
 		//~ }
+		
 		//~ // Control if user is login from another tab with different role
 		//~ if(toState.role && fromState.role) {
 			//~ if(toState.role != fromState.role) {

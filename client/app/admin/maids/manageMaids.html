@@ -7,6 +7,12 @@
 		<div class="box-content">
 			<form class="form-horizontal" name='maidForm' data-ng-submit="maidForm.$valid && manageMaid()" novalidate>
 				<fieldset>
+					<div class="control-group">
+						<label class="control-label" data-ng-bind="locale.profile+' '+locale.picture"></label>
+						<div class="controls">
+							<img width="100px" height="100px" ngf-src="file || 'assets/uploads/maids/thumbnail/{{maidData.image}}'">
+						</div>
+						<div style="margin-top:6px;" class="btn btn-info controls" class="button" ngf-select ng-model="file">Upload</div>
 				  <div class="control-group" data-ng-class="{'control-group-error':maidForm.first_name.$invalid && !maidForm.first_name.$pristine || maidForm.$submitted && maidForm.first_name.$invalid,'has-success' : maidForm.first_name.$valid }">
 					<label class="control-label">First Name <span>*</span></label>
 					<div class="controls">
@@ -220,7 +226,6 @@
 					  </label>
 					</div>
 				  </div>
-				
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Save Data</button>
 					<a class="btn" ui-sref="maids">Cancel</a>
@@ -228,7 +233,6 @@
 				
 				</fieldset>
 			  </form>
-		
 		</div>
 	</div>
 </div>

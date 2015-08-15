@@ -11,6 +11,10 @@
 
 var _ = require('lodash');
 var Maid = require('./maid.model');
+var fs = require('fs');
+var uuid = require('node-uuid');
+var multiparty = require('multiparty');
+var gm = require('gm').subClass({ imageMagick: true });
 
 // Get list of things
 exports.index = function(req, res) {
@@ -69,6 +73,41 @@ exports.destroy = function(req, res) {
       return res.send(204);
     });
   });
+};
+
+// Deletes a thing from the DB.
+exports.uploadImage = function(req, res) {
+  var form = new multiparty.Form();
+		form.parse(req, function(err, fields, files) {
+			var file = files.file[0];
+			var contentType = file.headers['content-type'];
+			var tmpPath = file.path;
+			var extIndex = tmpPath.lastIndexOf('.');
+			var extension = (extIndex < 0) ? '' : tmpPath.substr(extIndex);
+			// uuid is for generating unique filenames. 
+			var fileName = uuid.v4() + extension;
+			var destPath = 'client/assets/uploads/maids/org/' + fileName;
+			var imagename = fileName;
+			// Server side file type checker.
+			if (contentType !== 'image/png' && contentType !== 'image/jpeg') {
+				fs.unlink(tmpPath);
+				return res.status(400).send('Unsupported file type.');
+			}
+			fs.rename(tmpPath, destPath, function(err) {
+				if (err) {
+					return res.status(400).send('Image is not saved:');
+				} else {
+					gm(destPath)
+					.resize('200', '200', '^')
+					.gravity('Center')
+					.crop('200', '200')
+					.write('client/assets/uploads/maids/thumbnail/' + fileName, function (err) {
+						if (err) console.log(err);
+						return res.json({'destPath': destPath, 'imagename': fileName});
+					});
+				}
+			});
+		});
 };
 
 function handleError(res, err) {

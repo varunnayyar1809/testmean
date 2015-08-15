@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('woobeeApp')
-  .controller('ManageMaidsCtrl', function ($scope, $state, MaidSer, $timeout, $stateParams, getMaidData) {
+  .controller('ManageMaidsCtrl', function ($scope, $state, MaidSer, $timeout, $stateParams, getMaidData, Upload) {
 	
 	$scope.flag = 'add';
 	var id = '';
-	$scope.maidData = {gender:'male', meal_type:'veg', active:'yes', cleaning:'yes', marital_status:'single'};
+	$scope.maidData = {gender:'male', meal_type:'veg', active:'yes', cleaning:'yes', marital_status:'single', image:'default.jpg'};
 	if(getMaidData) {
 		$scope.maidData = getMaidData;
 		$scope.flag = 'edit';
@@ -46,4 +46,25 @@ angular.module('woobeeApp')
 				});
 			}
 		};
+	// Upload maid image
+	$scope.$watch('file', function (file) {
+      $scope.upload($scope.file);
+    });
+    $scope.upload = function (files) {
+        if (files) {
+			Upload.upload({
+				url: '/api/maid/uploadimage',
+				fields: {},
+				file: files
+			}).progress(function (evt) {
+				var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+				console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+			}).success(function (data, status, headers, config) {
+				console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+				$scope.maidData.image = data.imagename;
+			}).error(function (data, status, headers, config) {
+				console.log('error status: ' + status);
+			});
+		}
+    };
   });
